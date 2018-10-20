@@ -22,6 +22,19 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
       startNewRound()
       updateLabels()
+        let thumbImageNormal = UIImage(named: "SliderThumb-Normal")!
+        sender.setThumbImage(thumbImageNormal, for: .normal)
+        let thumbImageHighlighted = UIImage(named: "SliderThumb-Highlighted")!
+        sender.setThumbImage(thumbImageHighlighted, for: .highlighted)
+        let insets = UIEdgeInsets(top: 0, left: 14, bottom: 0, right: 14)
+        let trackLeftImage = UIImage(named: "SliderTrackLeft")!
+        let trackLeftResizable =
+            trackLeftImage.resizableImage(withCapInsets: insets)
+        sender.setMinimumTrackImage(trackLeftResizable, for: .normal)
+        let trackRightImage = UIImage(named: "SliderTrackRight")!
+        let trackRightResizable =
+            trackRightImage.resizableImage(withCapInsets: insets)
+        sender.setMaximumTrackImage(trackRightResizable, for: .normal)
     }
     @IBAction func showAlert() {
         let difference = abs(targetValue - currentValue)
@@ -67,6 +80,11 @@ class ViewController: UIViewController {
         targetLabel.text = String(targetValue)
         scoreLabel.text = String(score)
         roundLabel.text = String(round)
+    }
+    @IBAction func startOver(_ sender: Any) {
+        score = 0
+        round = 0
+        startNewRound()
     }
 }
 
