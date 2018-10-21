@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import QuartzCore
 class ViewController: UIViewController {
     @IBOutlet weak var roundLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
@@ -85,6 +85,12 @@ class ViewController: UIViewController {
         score = 0
         round = 0
         startNewRound()
+        // Add the following lines
+        let transition = CATransition()
+        transition.type = CATransitionType.fade
+        transition.duration = 1
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+            view.layer.add(transition, forKey: nil)
     }
 }
 
